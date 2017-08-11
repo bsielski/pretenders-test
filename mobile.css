@@ -22,7 +22,14 @@
     flex-flow: row nowrap;
     flex: 0 0 100%;
     justify-content: space-around;
-    margin: 5px 0; /******/
+    margin: 10px 0; /******/
+}
+
+.value-picker--imprisonment {
+  border-width: 0;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding: 0;
 }
 
 .value-picker__button {
@@ -63,7 +70,21 @@
     font-family: monospace;
     display: block;
 }
+
+.value-picker__label--scale {
+  font-size: 10px;
+  padding: 2px;
+}
+
 .value-picker__input--magic {
+    padding: 0;
+    width: 20px;
+}
+.value-picker__input--dominion {
+    padding: 0;
+    width: 20px;
+}
+.value-picker__input--scale {
     padding: 0;
     width: 20px;
 }

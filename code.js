@@ -11,22 +11,66 @@
 	// DOM ELEMENTS
 	const nationPicker = document.getElementById("nation-picker__select")
 	const pretendersTableBody = document.getElementById("pretenders-table__body")
+
 	const dominionInput = document.getElementById("dominion-picker__input")
+  const dominionButtonPlus = document.getElementById("dominion-button--plus")
+  const dominionButtonMinus = document.getElementById("dominion-button--minus")
+
 	const fireInput = document.getElementById("fire-picker__input")
+  const fireButtonPlus = document.getElementById("fire-button--plus")
+  const fireButtonMinus = document.getElementById("fire-button--minus")
+
 	const airInput = document.getElementById("air-picker__input")
+  const airButtonPlus = document.getElementById("air-button--plus")
+  const airButtonMinus = document.getElementById("air-button--minus")
+
 	const waterInput = document.getElementById("water-picker__input")
+  const waterButtonPlus = document.getElementById("water-button--plus")
+  const waterButtonMinus = document.getElementById("water-button--minus")
+
 	const earthInput = document.getElementById("earth-picker__input")
+  const earthButtonPlus = document.getElementById("earth-button--plus")
+  const earthButtonMinus = document.getElementById("earth-button--minus")
+
 	const astralInput = document.getElementById("astral-picker__input")
+  const astralButtonPlus = document.getElementById("astral-button--plus")
+  const astralButtonMinus = document.getElementById("astral-button--minus")
+
 	const deathInput = document.getElementById("death-picker__input")
+  const deathButtonPlus = document.getElementById("death-button--plus")
+  const deathButtonMinus = document.getElementById("death-button--minus")
+
 	const natureInput = document.getElementById("nature-picker__input")
+  const natureButtonPlus = document.getElementById("nature-button--plus")
+  const natureButtonMinus = document.getElementById("nature-button--minus")
+
 	const bloodInput = document.getElementById("blood-picker__input")
+  const bloodButtonPlus = document.getElementById("blood-button--plus")
+  const bloodButtonMinus = document.getElementById("blood-button--minus")
 
 	const orderInput = document.getElementById("order-picker__input")
+  const orderButtonPlus = document.getElementById("order-button--plus")
+  const orderButtonMinus = document.getElementById("order-button--minus")
+
 	const productivityInput = document.getElementById("productivity-picker__input")
+  const productivityButtonPlus = document.getElementById("productivity-button--plus")
+  const productivityButtonMinus = document.getElementById("productivity-button--minus")
+
 	const heatInput = document.getElementById("heat-picker__input")
+  const heatButtonPlus = document.getElementById("heat-button--plus")
+  const heatButtonMinus = document.getElementById("heat-button--minus")
+
 	const growthInput = document.getElementById("growth-picker__input")
+  const growthButtonPlus = document.getElementById("growth-button--plus")
+  const growthButtonMinus = document.getElementById("growth-button--minus")
+
 	const fortuneInput = document.getElementById("fortune-picker__input")
+  const fortuneButtonPlus = document.getElementById("fortune-button--plus")
+  const fortuneButtonMinus = document.getElementById("fortune-button--minus")
+
 	const magicInput = document.getElementById("magic-picker__input")
+  const magicButtonPlus = document.getElementById("magic-button--plus")
+  const magicButtonMinus = document.getElementById("magic-button--minus")
 
 	const awakeInput = document.getElementById("awake-picker__input")
 	const dormantInput = document.getElementById("dormant-picker__input")
@@ -40,7 +84,7 @@
 	const blessEffectsDeath = document.getElementById("bless-effects-death")
 	const blessEffectsNature = document.getElementById("bless-effects-nature")
 	const blessEffectsBlood = document.getElementById("bless-effects-blood")
-	
+
 
 	fireInput.value = 0
 	airInput.value = 0
@@ -52,7 +96,7 @@
 	bloodInput.value = 0
 
 	dominionInput.value = 1
-	
+
 	dormantInput.parentNode.style.cursor = 'pointer'
 	imprisonedInput.parentNode.style.cursor = 'pointer'
 
@@ -73,11 +117,11 @@
 		    }
 		    return (minorEffectName + " +" + bonus + secondEffect  + major)
 		}
-		
+
 		else {
 		    return ""
 		}
-		
+
 	    }
 	}
 	const fireBlessEffect = makeEffect("Attack Skill", 2, 0.5, "Flaming weapons", fireInput)
@@ -88,8 +132,8 @@
 	const deathBlessEffect = makeEffect("Undying", 5, 1, "Death weapons", deathInput)
 	const natureBlessEffect = makeEffect("HP", 3, 1, "Regeneration (10%)", natureInput)
 	const bloodBlessEffect = makeEffect("Strength", 2, 0.5, "Blood Venegeance", bloodInput)
-	
-	
+
+
 	// MAPS
 	const vanillaPretenders = setupVanillaPretenders()
 	const vanillaNations = setupVanillaNations()
@@ -109,9 +153,9 @@
 	tableRow.appendChild(generateElement("td", {class: "pretenders-table__cell"}))
 	tableRow.appendChild(generateElement("td", {class: "pretenders-table__cell"}))
 
-	
+
 	// GLOBAL VARIABLE
-	let currentPretendersIds 
+	let currentPretendersIds
 	let calculatedPretenders
 	let imprisonment
 
@@ -140,7 +184,7 @@
 	}
 
 	setImprisonment()
-	
+
 	const filterPretenders = () => {
 	    let allPrets = []
 	    np.forEach( (prets_ids) => {
@@ -149,7 +193,7 @@
 	    allPrets = allPrets.filter( (elem, index, self) => {
 		return index == self.indexOf(elem)
 	    })
-	    
+
 	    vanillaPretenders.forEach( (pretender, pretender_id, map ) => {
 		if (!allPrets.includes(pretender_id)) {
 		    map.delete(pretender_id)
@@ -158,7 +202,7 @@
 	}
 
 	filterPretenders()
-	
+
 	const setCurrentPretenders = () => {
 	    if (nationPicker.value == "any") {
 		currentPretendersIds = Array.from(vanillaPretenders.keys())
@@ -167,14 +211,14 @@
 		currentPretendersIds =  np.get(nationPicker.value)
 	    }
 	}
-	
+
 	const cleanTable = () => {
 	    while (pretendersTableBody.childNodes.length > 0) {
 		pretendersTableBody.removeChild(pretendersTableBody.lastChild)
 	    }
 	}
 
-	
+
 	const buildNationSelect = () => {
 	    const fragmentEA = document.createDocumentFragment()
 	    const fragmentMA = document.createDocumentFragment()
@@ -188,14 +232,14 @@
 		}
 		else if (nation.era == 3) {
 		    fragmentLA.appendChild(generateElement("option", {class: "nation-picker__option nation-picker__option--la", value: nation_id, textNode: ("LA " + nation.name)}))
-		}		 
+		}
 	    }
 	    vanillaNations.forEach(appendNationToFragmentByEra)
 	    nationPicker.appendChild(fragmentEA)
 	    nationPicker.appendChild(fragmentMA)
 	    nationPicker.appendChild(fragmentLA)
 	}
-	
+
 	buildNationSelect()
 
 	const makeTests = () => {
@@ -277,7 +321,7 @@
 	    wantedLevels.forEach( (wantedLevel, path) => {
 		cost = cost + magicPathCost(newPathCost, pretender[path], wantedLevel)
 	    })
-	    return cost    
+	    return cost
 	}
 
 	const temperatureCost = (baseHeat, wantedHeat) => {
@@ -286,9 +330,9 @@
 	    }
 	    else {
 		return Math.abs(wantedHeat - baseHeat) * 40
-	    }	
+	    }
 	}
-	
+
 	const calculatePretenders = () => {
 	    const result = []
 	    const countPretender = (id) => {
@@ -312,7 +356,7 @@
 		    }
 		    if (nation.idealcold) {
 			baseTemperature = nation.idealcold * -1
-		    }	
+		    }
 		}
 		const result = {}
 		result.id = id
@@ -379,10 +423,10 @@
 	    }
 
 	}
-	
+
 	const printPretenders = () => {
 	    cleanTable()
-	    
+
 	    let pathNames = {"F": "fire", "A": "air", "W": "water", "E": "earth", "S": "astral", "D": "death", "N": "nature", "B": "blood"}
 
 	    const printMagic = (calculated, path) => {
@@ -396,13 +440,13 @@
 		}
 		return td
 	    }
-	    
+
 	    const fragment =  document.createDocumentFragment()
 
 	    const printPretender = (calculated) => {
 		const row = tableRow.cloneNode(true)
 		const cells = row.childNodes
-   
+
 		cells[0].textContent = vanillaPretenders.get(calculated.id.toString())["name"]
 		cells[1].textContent = calculated.pointsLeft + imprisonment
 		cells[2].textContent = calculated.currentDominion
@@ -448,14 +492,14 @@
 	    pretendersTableBody.appendChild(fragment)
 	    deb.rep(calculatedPretenders.length, " <- number of pretenders")
 	}
-	
+
 	const update = () => {
 	    setCurrentPretenders()
 	    setImprisonment()
 	    calculatePretenders()
 	    printPretenders()
 	}
-	
+
 	const nationUpdate = () => {
 	    colorizeHeat(nationPicker.value, heatInput)
 	    setCurrentPretenders()
@@ -531,7 +575,7 @@
 
 	    calculatePretenders()
 	    printPretenders()
-	    
+
 	}
 
 	const heatUpdate = () => {
@@ -561,45 +605,87 @@
 		    preferredHeat = nation.idealcold * -1
 		}
 	    }
-	    
+
 	    if (currentHeat != preferredHeat) {
 		heatInput.classList.add("value-picker__input--negative")
 	    }
 	    else {
 		heatInput.classList.remove("value-picker__input--negative")
 	    }
-		
+
 	}
 
 	update()
 
 //	makeTests()
-	
+
 	nationPicker.addEventListener('change', nationUpdate)
-	
-	dominionInput.addEventListener('change', magicUpdate)	
+
+	dominionInput.addEventListener('change', magicUpdate)
+  dominionButtonPlus.addEventListener('click', function () { dominionInput.value++; magicUpdate() } )
+  dominionButtonMinus.addEventListener('click', function () { dominionInput.value--; magicUpdate() } )
+
 	fireInput.addEventListener('change', magicUpdate)
+  fireButtonPlus.addEventListener('click', function () { fireInput.value++; magicUpdate() } )
+  fireButtonMinus.addEventListener('click', function () { fireInput.value--; magicUpdate() } )
+
 	airInput.addEventListener('change', magicUpdate)
+  airButtonPlus.addEventListener('click', function () { airInput.value++; magicUpdate() } )
+  airButtonMinus.addEventListener('click', function () { airInput.value--; magicUpdate() } )
+
 	waterInput.addEventListener('change', magicUpdate)
+  waterButtonPlus.addEventListener('click', function () { waterInput.value++; magicUpdate() } )
+  waterButtonMinus.addEventListener('click', function () { waterInput.value--; magicUpdate() } )
+
 	earthInput.addEventListener('change', magicUpdate)
+  earthButtonPlus.addEventListener('click', function () { earthInput.value++; magicUpdate() } )
+  earthButtonMinus.addEventListener('click', function () { earthInput.value--; magicUpdate() } )
+
 	astralInput.addEventListener('change', magicUpdate)
+  astralButtonPlus.addEventListener('click', function () { astralInput.value++; magicUpdate() } )
+  astralButtonMinus.addEventListener('click', function () { astralInput.value--; magicUpdate() } )
+
 	deathInput.addEventListener('change', magicUpdate)
+  deathButtonPlus.addEventListener('click', function () { deathInput.value++; magicUpdate() } )
+  deathButtonMinus.addEventListener('click', function () { deathInput.value--; magicUpdate() } )
+
 	natureInput.addEventListener('change', magicUpdate)
+  natureButtonPlus.addEventListener('click', function () { natureInput.value++; magicUpdate() } )
+  natureButtonMinus.addEventListener('click', function () { natureInput.value--; magicUpdate() } )
+
 	bloodInput.addEventListener('change', magicUpdate)
+  bloodButtonPlus.addEventListener('click', function () { bloodInput.value++; magicUpdate() } )
+  bloodButtonMinus.addEventListener('click', function () { bloodInput.value--; magicUpdate() } )
 
 	heatInput.addEventListener('change', heatUpdate)
+  heatButtonPlus.addEventListener('click', function () { heatInput.value++; heatUpdate() } )
+  heatButtonMinus.addEventListener('click', function () { heatInput.value--; heatUpdate() } )
 
 	orderInput.addEventListener('change', scalesUpdate)
+  orderButtonPlus.addEventListener('click', function () { orderInput.value++; scalesUpdate() } )
+  orderButtonMinus.addEventListener('click', function () { orderInput.value--; scalesUpdate() } )
+
 	productivityInput.addEventListener('change', scalesUpdate)
-	growthInput.addEventListener('change', scalesUpdate)
+  productivityButtonPlus.addEventListener('click', function () { productivityInput.value++; scalesUpdate() } )
+  productivityButtonMinus.addEventListener('click', function () { productivityInput.value--; scalesUpdate() } )
+
+  growthInput.addEventListener('change', scalesUpdate)
+  growthButtonPlus.addEventListener('click', function () { growthInput.value++; scalesUpdate() } )
+  growthButtonMinus.addEventListener('click', function () { growthInput.value--; scalesUpdate() } )
+
 	fortuneInput.addEventListener('change', scalesUpdate)
-	magicInput.addEventListener('change', scalesUpdate)
+  fortuneButtonPlus.addEventListener('click', function () { fortuneInput.value++; scalesUpdate() } )
+  fortuneButtonMinus.addEventListener('click', function () { fortuneInput.value--; scalesUpdate() } )
+
+  magicInput.addEventListener('change', scalesUpdate)
+  magicButtonPlus.addEventListener('click', function () { magicInput.value++; scalesUpdate() } )
+  magicButtonMinus.addEventListener('click', function () { magicInput.value--; scalesUpdate() } )
 
 	awakeInput.addEventListener('change', imprisonmentUpdate)
 	dormantInput.addEventListener('change', imprisonmentUpdate)
 	imprisonedInput.addEventListener('change', imprisonmentUpdate)
 
-	
+
     }
 
     window.addEventListener('load', main)

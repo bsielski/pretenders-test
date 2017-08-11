@@ -11,30 +11,25 @@ body {
 
 .nation-picker__option {
     color: #eeeeee;
-
 }
 
 .nation-picker__option--any {
     background-color: #3f4142;
-
 }
 
 .nation-picker__option--ea {
     background-color: #eeeeee;
     color: #222222;
-
 }
 
 .nation-picker__option--ma {
     background-color: #888888;
     color: #eeeeee;
-
 }
 
 .nation-picker__option--la {
     background-color: #111111;
     color: #bbbbbb;
-
 }
 
 .form {
